@@ -1,8 +1,23 @@
-let stack = [];
+const Stack = function () {
+  function Stack(array = []) {
+    if (!Array.isArray(array)) {
+      throw new TypeError(`${array} is not an array.`);
+    }
+    this.array = array;
+  }
 
-stack.push(5);
-stack.push(4);
-stack.push(3);
-stack.push(2);
-stack.push(1);
-console.log(stack);
+  Stack.prototype = {
+    constructor: Stack,
+    push(value) {
+      return this.array.push(value);
+    },
+    pop() {
+      return this.array.pop();
+    },
+    entries() {
+      return [...this.array];
+    },
+  };
+
+  return Stack;
+};
