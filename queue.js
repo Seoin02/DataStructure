@@ -1,14 +1,21 @@
-let queue = [];
+const Queue = (function () {
+  function Queue(array = []) {
+    if (!Array.isArray(array)) {
+      throw new TypeError(`${array} is not an array.`);
+    }
+    this.array = array;
+  }
 
-queue.push("월");
-queue.push("화");
-queue.push("수");
-queue.push("목");
-queue.push("금");
-queue.push("토");
+  Queue.prototype = {
+    constructor: Queue,
+    enqueue(value) {
+      return this.array.push(value);
+    },
+    dequeue() {
+      return this.array.shift();
+    },
+  };
+  return Queue;
+})();
 
-console.log(queue);
-
-console.log(queue.shift());
-console.log(queue.shift());
-console.log(queue);
+const queue = new Queue([1, 2]);
